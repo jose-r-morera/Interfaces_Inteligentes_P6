@@ -32,7 +32,7 @@ public class Ejercicio2 : MonoBehaviour
     void Update()
     {
         // Aplicar orientación al norte
-        rotacion_deseada.rotation =  Quaternion.Inverse(Input.gyro.attitude);
+        rotacion_deseada.rotation =  Input.gyro.attitude;
 
         // rotacion_deseada.rotation *= Quaternion.AngleAxis(-Input.compass.trueHeading, Vector3.up); 
 
@@ -40,7 +40,7 @@ public class Ejercicio2 : MonoBehaviour
         rotacion_deseada.Rotate(0f, 0f, 180f, Space.Self);  
 
         // Alinear el sistema de coordenadas del dispositivo con el de Unity
-        rotacion_deseada.Rotate(90f, 180f, 0f, Space.World);
+        rotacion_deseada.Rotate(90f, 0, 0f, Space.World);
 
         // Suavizar la rotación final con interpolación Slerp
         samurai.rotation = Quaternion.Slerp(samurai.rotation, rotacion_deseada.rotation, smoothing);
